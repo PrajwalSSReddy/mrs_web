@@ -14,8 +14,10 @@ def fetch_poster(movie_id):
     response = requests.get(url, headers=headers)
 
     data = response.json()
-    print(data)
-    return "https://image.tmdb.org/t/p/w500/"+data['poster_path']
+    if data['poster_path'] != None:
+        return "https://image.tmdb.org/t/p/w500/"+data['poster_path']
+    else:
+        return "https://www.google.com/url?sa=i&url=https%3A%2F%2Farchive.org%2Fdetails%2Fcenturyofmoviepo00king&psig=AOvVaw1xOFECrYN3qumAByDEtrf_&ust=1702718064377000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjjg6WNkYMDFQAAAAAdAAAAABAD"
 
 def recommend(movie):
     index = movies[movies['title'] == movie].index[0]
